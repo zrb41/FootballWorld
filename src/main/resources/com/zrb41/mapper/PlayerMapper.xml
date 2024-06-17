@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrb41.mapper.PlayerMapper">
+
+    <select id="queryById" resultType="player">
+        select* from tb_player where id=#{id}
+    </select>
+
+    <select id="queryAll" resultType="player">
+        select* from tb_player;
+    </select>
+
+    <delete id="deleteById">
+        delete from tb_player where id=#{id}
+    </delete>
+
+    <!--动态sql，批量插入-->
+    <insert id="insertBatch">
+        insert into tb_player (name,age,country_name,club_name,position,ability,price) values
+        <foreach collection="list" item="player" separator=",">
+            (#{player.name},#{player.age},#{player.countryName},#{player.clubName},
+            #{player.position},#{player.ability},#{player.price})
+        </foreach>
+    </insert>
+
+    <!--动态sql，批量删除-->
+    <delete id="deleteBatch">
+        delete from tb_player where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
