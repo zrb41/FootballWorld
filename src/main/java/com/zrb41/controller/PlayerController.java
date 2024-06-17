@@ -1,14 +1,17 @@
 package com.zrb41.controller;
 
+import com.zrb41.dto.LoginDTO;
 import com.zrb41.mapper.PlayerMapper;
 import com.zrb41.pojo.Player;
 import com.zrb41.service.PlayerService;
 import com.zrb41.utils.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("player")
 public class PlayerController {
@@ -18,6 +21,7 @@ public class PlayerController {
 
     @GetMapping
     // 根据id查询球员信息
+    // 添加Redis缓存
     public Result<Player> queryById(Integer id){
         Player player = playerService.queryById(id);
         if(player==null){
@@ -32,6 +36,19 @@ public class PlayerController {
         List<Player> players = playerService.queryAll();
         return Result.success(players);
     }
+
+    @PutMapping
+    // 更新球员信息
+    public Result<Object> update(@RequestBody Player player){
+        int update = playerService.update(player);
+        if(update==1){
+            return Result.success();
+        }
+        else{
+            return Result.error("更新失败");
+        }
+    }
+
 
     @DeleteMapping
     // 根据id删除球员信息

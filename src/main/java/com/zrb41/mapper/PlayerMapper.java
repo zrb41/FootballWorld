@@ -18,4 +18,6 @@ public interface PlayerMapper {
     int insertBatch(List<Player> list);
 
     int deleteBatch(List<Integer> ids);
+
+    int update(Player player);
 }

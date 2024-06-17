@@ -32,4 +32,37 @@
             #{id}
         </foreach>
     </delete>
+
+    <!--动态sql，更新数据-->
+    <update id="update">
+        update tb_player
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+
+            <if test="age!=null">
+                name=#{age},
+            </if>
+            <if test="countryName!=null">
+                country_name=#{countryName},
+            </if>
+            <if test="clubName!=null">
+                club_name=#{clubName},
+            </if>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="position!=null">
+                position=#{position},
+            </if>
+            <if test="ability!=null">
+                ability=#{ability},
+            </if>
+            <if test="price!=null">
+                price=#{price},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

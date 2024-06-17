@@ -10,6 +10,8 @@ public interface PlayerService {
 
     List<Player> queryAll();
 
+    int update(Player player);
+
     int deleteById(Integer id);
 
     int insertBatch(List<Player> list);
