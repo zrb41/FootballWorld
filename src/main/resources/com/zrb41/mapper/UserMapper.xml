@@ -7,7 +7,11 @@
         select* from tb_user where phone=#{phone}
     </select>
 
-    <insert id="createUser">
+    <insert id="createUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into tb_user (name,phone) values (#{name},#{phone})
     </insert>
+
+    <select id="queryById" resultType="user">
+        select* from tb_user where id=#{id}
+    </select>
 </mapper>

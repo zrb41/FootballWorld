@@ -1,11 +1,10 @@
 package com.zrb41.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.json.JSONUtil;
 import com.zrb41.mapper.PlayerMapper;
-import com.zrb41.pojo.Player;
+import com.zrb41.entity.Player;
 import com.zrb41.service.PlayerService;
 import com.zrb41.utils.CacheClient;
+import com.zrb41.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 import static com.zrb41.utils.RedisConstants.*;
 
@@ -70,8 +68,18 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public int insertBatch(List<Player> list) {
-        return playerMapper.insertBatch(list);
+    @Transactional
+    public Result<Object> insertBatch(List<Player> list) {
+        // 不用添加事务，因为只执行一句sql。 insert into xx () values (),(),();
+        // 添加失败报错的话直接走全局异常处理器
+        int i = playerMapper.insertBatch(list);
+        for (int i1 = 0; i1 < list.size(); i1++) {
+            System.out.println(list.get(i1).getId());
+        }
+        if(i==list.size()){
+            return Result.success();
+        }
+        return Result.error("插入失败");
     }
 
     @Override

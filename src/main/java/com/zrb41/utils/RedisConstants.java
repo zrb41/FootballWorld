@@ -9,7 +9,7 @@ public class RedisConstants {
     // token的key
     public static final String LOGIN_TOKEN="login:token:";
     // token的有效期
-    public static final Long LOGIN_TOKEN_TTL=30l;
+    public static final Long LOGIN_TOKEN_TTL=3600l;
 
     // 球员信息的key
     public static final String CACHE_PLAYER="cache:playerId:";
@@ -18,4 +18,6 @@ public class RedisConstants {
 
     // 球员锁
     public static final String LOCK_PLAYER_KEY="lock:player:";
+
+    public static final String ARTICLE_LIKED="article:liked:";
 }

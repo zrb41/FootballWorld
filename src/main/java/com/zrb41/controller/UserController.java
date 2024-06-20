@@ -1,8 +1,10 @@
 package com.zrb41.controller;
 
 import com.zrb41.dto.LoginDTO;
+import com.zrb41.entity.User;
 import com.zrb41.service.UserService;
 import com.zrb41.utils.Result;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +49,18 @@ public class UserController {
 
     // 基于Redis - 用户退出登录
     @PostMapping("logoutByRedis")
-    public Result<Object> logoutByRedis(HttpSession httpSession){
-        return userService.logoutByRedis(httpSession);
+    public Result<Object> logoutByRedis(HttpServletRequest request){
+        return userService.logoutByRedis(request);
     }
 
+    // todo
+    // commit message规范+插件
 
+    // 根据id查询用户
+    @GetMapping("{id}")
+    public Result<User> queryById(@PathVariable Integer id){
+        return userService.queryById(id);
+    }
 
+    //@GetMapping
 }

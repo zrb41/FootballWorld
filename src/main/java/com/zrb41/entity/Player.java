@@ -1,4 +1,4 @@
-package com.zrb41.pojo;
+package com.zrb41.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

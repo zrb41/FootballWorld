@@ -1,13 +1,11 @@
 package com.zrb41.interceptor;
 
-import com.zrb41.pojo.User;
+import com.zrb41.entity.User;
 import com.zrb41.utils.UserHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 
 // ========= 基于session的登录拦截器 =========

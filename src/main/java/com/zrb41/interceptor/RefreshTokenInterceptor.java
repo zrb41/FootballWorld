@@ -3,7 +3,7 @@ package com.zrb41.interceptor;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.zrb41.pojo.User;
+import com.zrb41.entity.User;
 import com.zrb41.utils.RedisConstants;
 import com.zrb41.utils.UserHolder;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +30,9 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
     private StringRedisTemplate stringRedisTemplate;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        UserHolder.removeUser();
+
         // 获取请求头中的token,名称在前端代码中设置 - authorization
         String token = request.getHeader("authorization");
         if(StrUtil.isBlank(token)){

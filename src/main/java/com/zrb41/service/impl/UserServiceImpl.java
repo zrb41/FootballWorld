@@ -5,24 +5,25 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import com.zrb41.dto.LoginDTO;
 import com.zrb41.mapper.UserMapper;
-import com.zrb41.pojo.User;
+import com.zrb41.entity.User;
 import com.zrb41.service.UserService;
 import com.zrb41.utils.RedisConstants;
 import com.zrb41.utils.Result;
 import com.zrb41.utils.UserHolder;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import static com.zrb41.utils.RedisConstants.*;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -120,6 +121,7 @@ public class UserServiceImpl implements UserService {
             user=new User();
             user.setPhone(loginDTO.getPhone());
             user.setName("user_"+RandomUtil.randomString(6));
+            // 主键必须回显,否则user里的id属性为空
             userMapper.createUser(user);
         }
 
@@ -137,9 +139,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<Object> logoutByRedis(HttpSession httpSession) {
+    public Result<Object> logoutByRedis(HttpServletRequest request) {
         // 让用户的token失效
         // todo
+        String token = request.getHeader("authorization");
+        stringRedisTemplate.delete(LOGIN_TOKEN+token);
+        UserHolder.removeUser();
         return Result.success();
+    }
+
+    @Override
+    public Result<User> queryById(Integer id) {
+        User user = userMapper.queryById(id);
+        if(user==null){
+            return Result.error("用户不存在");
+        }
+        return Result.success(user);
     }
 }

@@ -1,7 +1,7 @@
 package com.zrb41.service;
 
-import com.zrb41.pojo.Player;
-import org.springframework.transaction.annotation.Transactional;
+import com.zrb41.entity.Player;
+import com.zrb41.utils.Result;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface PlayerService {
 
     int deleteById(Integer id);
 
-    int insertBatch(List<Player> list);
+    Result<Object> insertBatch(List<Player> list);
 
     int deleteBatch(List<Integer> ids);
 }

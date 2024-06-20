@@ -1,7 +1,7 @@
 package com.zrb41.service.impl;
 
 import com.zrb41.mapper.CountryMapper;
-import com.zrb41.pojo.Player;
+import com.zrb41.entity.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

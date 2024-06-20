@@ -17,11 +17,11 @@
     </delete>
 
     <!--动态sql，批量插入-->
-    <insert id="insertBatch">
+    <!--插入操作都要主键回显-->
+    <insert id="insertBatch" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into tb_player (name,age,country_name,club_name,position,ability,price) values
         <foreach collection="list" item="player" separator=",">
-            (#{player.name},#{player.age},#{player.countryName},#{player.clubName},
-            #{player.position},#{player.ability},#{player.price})
+            (#{player.name},#{player.age},#{player.countryName},#{player.clubName},#{player.position},#{player.ability},#{player.price})
         </foreach>
     </insert>
 

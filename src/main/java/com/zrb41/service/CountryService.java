@@ -1,6 +1,6 @@
 package com.zrb41.service;
 
-import com.zrb41.pojo.Player;
+import com.zrb41.entity.Player;
 
 import java.util.List;
 

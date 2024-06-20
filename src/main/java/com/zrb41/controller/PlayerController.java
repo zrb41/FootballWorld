@@ -1,8 +1,6 @@
 package com.zrb41.controller;
 
-import com.zrb41.dto.LoginDTO;
-import com.zrb41.mapper.PlayerMapper;
-import com.zrb41.pojo.Player;
+import com.zrb41.entity.Player;
 import com.zrb41.service.PlayerService;
 import com.zrb41.utils.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -70,11 +68,8 @@ public class PlayerController {
     @PostMapping("insertBatch")
     // 添加1个或多个球员信息
     public Result<Object> insertBatch(@RequestBody List<Player> list){
-        int i = playerService.insertBatch(list);
 
-        // 不用添加事务，因为只执行一句sql。 insert into xx () values (),(),();
-        // 添加失败报错的话直接走全局异常处理器
-        return Result.success();
+        return playerService.insertBatch(list);
     }
 
 

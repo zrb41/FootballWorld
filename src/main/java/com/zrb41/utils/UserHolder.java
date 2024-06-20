@@ -1,6 +1,6 @@
 package com.zrb41.utils;
 
-import com.zrb41.pojo.User;
+import com.zrb41.entity.User;
 
 public class UserHolder {
     private static ThreadLocal<User> t1=new ThreadLocal<>();

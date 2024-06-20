@@ -20,4 +20,4 @@ mybatis:
     # 开启驼峰映射
     map-underscore-to-camel-case: true
   # 给实体类其别名 - 类名小写
-  type-aliases-package: com.zrb41.pojo
+  type-aliases-package: com.zrb41.entity

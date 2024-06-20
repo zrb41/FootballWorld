@@ -1,7 +1,6 @@
 package com.zrb41.mapper;
 
-import com.zrb41.pojo.Player;
-import org.apache.ibatis.annotations.Mapper;
+import com.zrb41.entity.Player;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

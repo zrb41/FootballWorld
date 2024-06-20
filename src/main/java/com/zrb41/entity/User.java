@@ -1,14 +1,15 @@
-package com.zrb41.pojo;
+package com.zrb41.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Country {
+public class User {
     private Integer id;
     private String name;
+    private String phone;
+    private String password;
 }

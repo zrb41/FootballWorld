@@ -1,6 +1,6 @@
 package com.zrb41.mapper;
 
-import com.zrb41.pojo.User;
+import com.zrb41.entity.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -11,4 +11,7 @@ public interface UserMapper {
 
     // 添加用户
     int createUser(User user);
+
+    // 根据id查询用户
+    User queryById(Integer id);
 }

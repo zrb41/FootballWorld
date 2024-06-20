@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrb41.mapper.ArticleMapper">
+    <insert id="addArticle">
+        insert into tb_article (user_id,title,content,liked,comments)
+        values (#{userId},#{title},#{content},#{liked},#{comments})
+    </insert>
+
+    <select id="queryById" resultType="article">
+        select * from tb_article where id=#{id}
+    </select>
+
+    <update id="updateArticle">
+        update tb_article
+        <set>
+            <if test="userId!=null">
+                user_id=#{userId},
+            </if>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="liked!=null">
+                liked=#{liked},
+            </if>
+            <if test="comments!=null">
+                comments=#{comments}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>
