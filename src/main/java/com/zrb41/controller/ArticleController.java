@@ -16,13 +16,13 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    // 添加用户发布的文章
+    // 发布的文章
     @PostMapping
     public Result<Object> addArticle(@RequestBody Article article){
         return articleService.addArticle(article);
     }
 
-    // 根据id查询文章
+    // 根据文章id查询文章
     @GetMapping("{id}")
     public Result<Article> queryById(@PathVariable int id){
         return articleService.queryById(id);
@@ -34,7 +34,7 @@ public class ArticleController {
         return articleService.likeArticle(id);
     }
 
-    // 根据id查询某文章被哪些用户点赞，根据用户的点赞时间排序
+    // 根据文章id查询某文章被哪些用户点赞，根据用户的点赞时间排序
     @GetMapping("likes/{id}")
     public Result<List<User>> queryArticleLikes(@PathVariable Integer id){
         return articleService.queryArticleLikes(id);

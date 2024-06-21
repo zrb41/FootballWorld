@@ -1,6 +1,7 @@
 package com.zrb41.controller;
 
 import com.zrb41.dto.LoginDTO;
+import com.zrb41.entity.Article;
 import com.zrb41.entity.User;
 import com.zrb41.service.UserService;
 import com.zrb41.utils.Result;
@@ -9,6 +10,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Slf4j
@@ -56,11 +59,15 @@ public class UserController {
     // todo
     // commit message规范+插件
 
-    // 根据id查询用户
+    // 根据用户id查询用户
     @GetMapping("{id}")
     public Result<User> queryById(@PathVariable Integer id){
         return userService.queryById(id);
     }
 
-    //@GetMapping
+    // 根据用户id查询该用户发布了哪些文章
+    @GetMapping("of/user")
+    public Result<List<Article>> queryArticleById(Integer userId){
+        return userService.queryArticleById(userId);
+    }
 }

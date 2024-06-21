@@ -14,4 +14,8 @@
     <select id="queryById" resultType="user">
         select* from tb_user where id=#{id}
     </select>
+
+    <select id="queryArticleById" resultType="article">
+        select * from tb_article where user_id=#{userId};
+    </select>
 </mapper>

@@ -1,7 +1,10 @@
 package com.zrb41.mapper;
 
+import com.zrb41.entity.Article;
 import com.zrb41.entity.User;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserMapper {
@@ -14,4 +17,7 @@ public interface UserMapper {
 
     // 根据id查询用户
     User queryById(Integer id);
+
+    // 根据id查询该用户发布了哪些文章
+    List<Article> queryArticleById(Integer userId);
 }

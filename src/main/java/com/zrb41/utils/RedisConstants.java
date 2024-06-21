@@ -19,5 +19,10 @@ public class RedisConstants {
     // 球员锁
     public static final String LOCK_PLAYER_KEY="lock:player:";
 
+    // 文章点赞
     public static final String ARTICLE_LIKED="article:liked:";
+
+    // 关注
+    public static final String FOLLOWS="follows:";
+
 }

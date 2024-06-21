@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 import com.zrb41.dto.LoginDTO;
+import com.zrb41.entity.Article;
 import com.zrb41.mapper.UserMapper;
 import com.zrb41.entity.User;
 import com.zrb41.service.UserService;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -155,5 +157,11 @@ public class UserServiceImpl implements UserService {
             return Result.error("用户不存在");
         }
         return Result.success(user);
+    }
+
+    @Override
+    public Result<List<Article>> queryArticleById(Integer userId) {
+        List<Article> articles = userMapper.queryArticleById(userId);
+        return Result.success(articles);
     }
 }
